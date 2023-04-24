@@ -30,7 +30,6 @@ import io.qameta.allure.Step;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.function.IntPredicate;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -55,7 +54,7 @@ public class ProductPage extends AbstractPageObject {
     @FindBy(css=".bm-menu-wrap > .bm-menu")
     private WebElement menuWrapper;
 
-    @FindBy(css="logout_sidebar_link")
+    @FindBy(id="logout_sidebar_link")
     private WebElement btnLogOut;
 
     @FindBy(css = "div.inventory_container>div>div")
@@ -69,31 +68,44 @@ public class ProductPage extends AbstractPageObject {
     public void openMenu() {
         this.btnMenu.click();
 
-        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.stalenessOf(menuWrapper));
+        // WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(3));
+        // wait.until(ExpectedConditions.stalenessOf(DriverManager.getDriver().findElement(By.cssSelector(".bm-menu-wrap > .bm-menu"))));
+        // wait.until(ExpectedConditions.stalenessOf(menuWrapper));
     }
 
     @Step
     public void openMenu(String menu) {
         this.btnMenu.click();
 
-        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.stalenessOf(menuWrapper));
+        // WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(3));
+        // wait.until(ExpectedConditions.stalenessOf(DriverManager.getDriver().findElement(By.cssSelector(".bm-menu-wrap > .bm-menu"))));
 
     }
 
     @Step
     public int getListItem() {
-        return listItem.findElements(By.cssSelector("div>div")).size();
+        // return listItem.findElements(By.cssSelector("div>div")).size();
+        return item.size();
         // return DriverManager.getDriver().findElements(By.cssSelector("inventory_list")).size();
     }
 
 
     @Step
+    public String getPageTile() {
+
+        return title.getText();
+
+    }
+
+    @Step
     public void logOut() {
         
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.stalenessOf(menuWrapper));
+        // wait.until(ExpectedConditions.stalenessOf(menuWrapper));
+        wait.until(ExpectedConditions.presenceOfElementLocated((By.cssSelector(".bm-menu-wrap > .bm-menu"))));
+
+        wait.until(ExpectedConditions.elementToBeClickable((By.id("logout_sidebar_link"))));
+
         btnLogOut.click();
     }
 }

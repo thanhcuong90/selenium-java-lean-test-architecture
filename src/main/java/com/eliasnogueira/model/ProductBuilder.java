@@ -25,8 +25,6 @@
 
 package com.eliasnogueira.model;
 
-import com.eliasnogueira.enums.RoomType;
-
 public class ProductBuilder {
 
     private String name;
