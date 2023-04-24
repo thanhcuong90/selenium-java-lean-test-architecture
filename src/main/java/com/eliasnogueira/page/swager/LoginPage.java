@@ -22,34 +22,32 @@
  * SOFTWARE.
  */
 
-package com.eliasnogueira.page.booking;
+package com.eliasnogueira.page.swager;
 
+import com.eliasnogueira.driver.DriverManager;
 import com.eliasnogueira.page.AbstractPageObject;
 import io.qameta.allure.Step;
+
+import java.time.Duration;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
+// import selenium.webdriver.support.ui.WebDriverWait;
 
-public class AccountPage extends AbstractPageObject {
-
-    @FindBy(id = "email")
-    private WebElement email;
+public class LoginPage extends AbstractPageObject {
+    
+    @FindBy(id = "user-name")
+    private WebElement userName;
 
     @FindBy(id = "password")
     private WebElement password;
 
-    @FindBy(name = "country")
-    private WebElement country;
-
-    @FindBy(name = "budget")
-    private WebElement budget;
-
-    @FindBy(css = ".check")
-    private WebElement newsletter;
+    @FindBy(id = "login-button")
+    private WebElement btnLogin;
 
     @Step
-    public void fillEmail(String email) {
-        this.email.sendKeys(email);
+    public void fillEmail(String userName) {
+        this.userName.sendKeys(userName);
     }
 
     @Step
@@ -58,17 +56,7 @@ public class AccountPage extends AbstractPageObject {
     }
 
     @Step
-    public void selectCountry(String country) {
-        new Select(this.country).selectByVisibleText(country);
-    }
-
-    @Step
-    public void selectBudget(String value) {
-        new Select(budget).selectByVisibleText(value);
-    }
-
-    @Step
-    public void clickNewsletter() {
-        newsletter.click();
+    public void submitLogin() {
+        btnLogin.click();
     }
 }

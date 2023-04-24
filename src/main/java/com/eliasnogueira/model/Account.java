@@ -22,53 +22,32 @@
  * SOFTWARE.
  */
 
-package com.eliasnogueira.page.booking;
+package com.eliasnogueira.model;
 
-import com.eliasnogueira.page.AbstractPageObject;
-import io.qameta.allure.Step;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
+public class Account {
 
-public class AccountPage extends AbstractPageObject {
+    private String email;
+    private String password;
+  
 
-    @FindBy(id = "email")
-    private WebElement email;
-
-    @FindBy(id = "password")
-    private WebElement password;
-
-    @FindBy(name = "country")
-    private WebElement country;
-
-    @FindBy(name = "budget")
-    private WebElement budget;
-
-    @FindBy(css = ".check")
-    private WebElement newsletter;
-
-    @Step
-    public void fillEmail(String email) {
-        this.email.sendKeys(email);
+    public Account(String email,  String password) {
+        this.email = email;
+        this.password = password;
     }
 
-    @Step
-    public void fillPassword(String password) {
-        this.password.sendKeys(password);
+    public Account(String type) {
+        
     }
 
-    @Step
-    public void selectCountry(String country) {
-        new Select(this.country).selectByVisibleText(country);
+    public Account() {
     }
 
-    @Step
-    public void selectBudget(String value) {
-        new Select(budget).selectByVisibleText(value);
+    public String getEmail() {
+        return this.email;
     }
 
-    @Step
-    public void clickNewsletter() {
-        newsletter.click();
+    public String getPassword(){
+        return this.password;
     }
+    
 }

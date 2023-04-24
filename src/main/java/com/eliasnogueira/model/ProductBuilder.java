@@ -1,3 +1,4 @@
+
 /*
  * MIT License
  *
@@ -22,53 +23,39 @@
  * SOFTWARE.
  */
 
-package com.eliasnogueira.page.booking;
+package com.eliasnogueira.model;
 
-import com.eliasnogueira.page.AbstractPageObject;
-import io.qameta.allure.Step;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
+import com.eliasnogueira.enums.RoomType;
 
-public class AccountPage extends AbstractPageObject {
+public class ProductBuilder {
 
-    @FindBy(id = "email")
-    private WebElement email;
+    private String name;
+    private String desciption;
+    private String price;
+    private String imageURL;
 
-    @FindBy(id = "password")
-    private WebElement password;
 
-    @FindBy(name = "country")
-    private WebElement country;
-
-    @FindBy(name = "budget")
-    private WebElement budget;
-
-    @FindBy(css = ".check")
-    private WebElement newsletter;
-
-    @Step
-    public void fillEmail(String email) {
-        this.email.sendKeys(email);
+    public ProductBuilder email(String name) {
+        this.name = name;
+        return this;
     }
 
-    @Step
-    public void fillPassword(String password) {
-        this.password.sendKeys(password);
+    public ProductBuilder desciption(String desciption) {
+        this.desciption = desciption;
+        return this;
     }
 
-    @Step
-    public void selectCountry(String country) {
-        new Select(this.country).selectByVisibleText(country);
+    public ProductBuilder price(String price) {
+        this.price = price;
+        return this;
     }
 
-    @Step
-    public void selectBudget(String value) {
-        new Select(budget).selectByVisibleText(value);
+    public ProductBuilder imageURL(String imageURL) {
+        this.imageURL = imageURL;
+        return this;
     }
 
-    @Step
-    public void clickNewsletter() {
-        newsletter.click();
+    public Product build() {
+        return new Product(name, desciption, price, imageURL);
     }
 }

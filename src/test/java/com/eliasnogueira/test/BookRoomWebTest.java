@@ -44,7 +44,7 @@ public class BookRoomWebTest extends BaseWeb {
         accountPage.selectCountry(bookingInformation.getCountry());
         accountPage.selectBudget(bookingInformation.getDailyBudget());
         accountPage.clickNewsletter();
-        accountPage.next();
+
 
         var roomPage = new RoomPage();
         roomPage.selectRoomType(bookingInformation.getRoomType());

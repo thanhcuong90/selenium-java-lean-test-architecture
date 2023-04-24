@@ -22,53 +22,40 @@
  * SOFTWARE.
  */
 
-package com.eliasnogueira.page.booking;
+package com.eliasnogueira.model;
 
-import com.eliasnogueira.page.AbstractPageObject;
-import io.qameta.allure.Step;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
+public class Product {
 
-public class AccountPage extends AbstractPageObject {
+    private String name;
+    private String desciption;
+    private String price;
+    private String imageURL;
+    
 
-    @FindBy(id = "email")
-    private WebElement email;
-
-    @FindBy(id = "password")
-    private WebElement password;
-
-    @FindBy(name = "country")
-    private WebElement country;
-
-    @FindBy(name = "budget")
-    private WebElement budget;
-
-    @FindBy(css = ".check")
-    private WebElement newsletter;
-
-    @Step
-    public void fillEmail(String email) {
-        this.email.sendKeys(email);
+    public Product(String name, String desciption, String price, String imageURL) {
+        this.name = name;
+        this.desciption = desciption;
+        this.price = price;
+        this.imageURL = imageURL;
+        
     }
 
-    @Step
-    public void fillPassword(String password) {
-        this.password.sendKeys(password);
+    public Product() {
     }
 
-    @Step
-    public void selectCountry(String country) {
-        new Select(this.country).selectByVisibleText(country);
+    public String getName() {
+        return this.name;
     }
 
-    @Step
-    public void selectBudget(String value) {
-        new Select(budget).selectByVisibleText(value);
+    public String getDesciption() {
+        return this.desciption;
     }
 
-    @Step
-    public void clickNewsletter() {
-        newsletter.click();
+    public String getPrice() {
+        return this.price;
+    }
+
+    public String getImageURL() {
+        return this.imageURL;
     }
 }
